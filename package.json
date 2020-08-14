@@ -1,0 +1,14 @@
+{
+  "name": "meco",
+  "version": "0.0.1",
+  "description": "in browser spacecraft simulation",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "space"
+  ],
+  "author": "Krishna Mani",
+  "license": "MIT"
+}

@@ -2,13 +2,41 @@
   "name": "meco",
   "version": "0.0.1",
   "description": "in browser spacecraft simulation",
-  "main": "src/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
     "space"
   ],
+  "license": "MIT",
   "author": "Krishna Mani",
-  "license": "MIT"
+  "main": "src/index.js",
+  "scripts": {
+    "build": "webpack --mode production --config webpack.config.js",
+    "dev": "webpack-dev-server --mode development --config webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-standard",
+      "stylelint-config-rational-order"
+    ]
+  },
+  "dependencies": {
+    "js-quantities": "^1.7.5",
+    "mithril": "^2.0.4",
+    "three": "^0.119.1"
+  },
+  "devDependencies": {
+    "css-loader": "^4.1.0",
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "html-webpack-plugin": "^4.3.0",
+    "style-loader": "^1.2.1",
+    "stylelint": "^13.6.1",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-order": "^4.1.0",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
 }

@@ -48,7 +48,7 @@ p {
   background-color: var(--background);
   border-top: 3px solid var(--highlight);
   transition-timing-function: easeoutcubic;
-  transition-duration: 0.5s;
+  transition-duration: 0.3s;
   transition-property: all;
 }
 
@@ -68,7 +68,7 @@ p {
   padding: 0;
   stroke-width: 0.1;
   cursor: pointer;
-  transition: transform 0.5s;
+  transition: transform 0.3s;
   fill: var(--highlight);
 }
 

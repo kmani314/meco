@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@400;700&display=swap');
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+:root {
+  font-size: 16px;
+  font-family: var(--font);
+  line-height: 1.5;
+
+  --background: #24292e;
+  --highlight: #f6f8fa;
+  --font: 'Recursive', sans;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+}
+
+p {
+  color: var(--highlight);
+  font-size: 1em;
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.info-pane,
+.info-pane-open {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--background);
+  border-top: 3px solid var(--highlight);
+  transition-timing-function: easeoutcubic;
+  transition-duration: 0.5s;
+  transition-property: all;
+}
+
+.info-pane {
+  height: 50px;
+  overflow-y: hidden;
+}
+
+.info-pane-open {
+  height: 400px;
+}
+
+.info-pane-pull,
+.info-pane-pull-rotated {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  stroke-width: 0.1;
+  cursor: pointer;
+  transition: transform 0.5s;
+  fill: var(--highlight);
+}
+
+.info-pane-pull-rotated {
+  transform: rotate(180deg);
+}
+
+.info-pane-content {
+  height: calc(100% - (48px + 2em));
+  padding: 0 2em 2em 2em;
+}

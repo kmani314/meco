@@ -15,7 +15,7 @@ export default class Signal {
 
     // Path loss exponent
     // not used yet (zero attenuation in free space)
-    this.ple = props.ple;
+    this.ple = props.ple || 1;
     this.frequency = props.frequency;
     this.wavelength = this.propagation.div(this.frequency);
     this.radius = Qty(0, 'm');
@@ -35,7 +35,7 @@ export default class Signal {
   hasIntersected(a) {
     // has the signal reached some point a?
     const d = util.distanceScalar(a, this.origin);
-    return d.gt(this.radius);
+    return this.radius.gt(d);
   }
 
   dopplerShift(v, p) {

@@ -38,6 +38,8 @@ export default class Signal {
     return this.radius.gt(d);
   }
 
+  // TODO: this is non-relativistic. delete and rewrite for electromagnetic waves and speeds
+  // approaching c
   dopplerShift(v, p) {
     // for some object at p moving with v⃗, what doppler shift does it experience?
     // this breaks when they are at the same point

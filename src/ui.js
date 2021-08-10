@@ -9,9 +9,9 @@ export default function render() {
   return {
     view(vnode) {
       return [m(canvas, vnode.attrs),
-        m('div', { class: `${infoPane ? 'info-pane-open' : 'info-pane'}` },
+        m('div', { class: `${infoPane ? 'info-pane' : 'info-pane-open'}` },
           m(svg.arrow, {
-            class: infoPane ? 'info-pane-pull-rotated' : 'info-pane-pull',
+            class: infoPane ? 'info-pane-pull' : 'info-pane-pull-rotated',
             stroke: '#fff',
             onclick: () => { infoPane = !infoPane; },
           }),

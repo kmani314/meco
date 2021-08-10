@@ -20,6 +20,7 @@
     ]
   },
   "dependencies": {
+    "file-loader": "^6.2.0",
     "js-quantities": "^1.7.5",
     "mithril": "^2.0.4",
     "three": "^0.119.1"

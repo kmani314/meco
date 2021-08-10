@@ -4,25 +4,27 @@ import ui from './ui';
 import Signal from './signal';
 import constants from './constants';
 import Planet from './planet';
-import gravity from './universe';
+import gravity from './forces';
 
 const earth = new Planet(
   {
     mass: constants.m_earth,
     radius: constants.r_earth,
+    track: true,
   },
 );
 
 // earth.force = [Qty(0, 'N'), Qty(0, 'N'), Qty(1000000000000000000000000000, 'N')];
 
-const moon = new Planet(
-  {
-    mass: constants.m_earth,
-    radius: constants.r_earth,
-    pos: [Qty(0, 'km'), Qty(0, 'km'), Qty(0, 'm')],
-    vel: [Qty(0, 'km/s'), Qty(0, 'km/s'), Qty(0, 'km/s')],
-  },
-);
+// const moon = new Planet(
+//   {
+//     mass: constants.m_earth,
+//     radius: constants.r_earth,
+//     pos: [Qty(0, 'km'), Qty(0, 'km'), Qty(0, 'm')],
+//     vel: [Qty(0, 'km/s'), Qty(0, 'km/s'), Qty(0, 'km/s')],
+//     track: false,
+//   },
+// );
 
 const body3 = new Planet(
   {
@@ -30,10 +32,12 @@ const body3 = new Planet(
     radius: constants.r_moon,
     pos: [Qty(385000, 'km'), Qty(0, 'km'), Qty(0, 'm')],
     vel: [Qty(0, 'km/s'), Qty(0, 'km/s'), Qty(1.018, 'km/s')],
+    track: true,
   },
 );
 
-const obj = [earth, body3];
+// const obj = [earth, body3];
+const obj = [earth];
 
 m.mount(document.body, {
   view: () => m(ui, { obj }),
@@ -55,9 +59,14 @@ const p = [Qty(2 ** 0.5, 'm'), Qty(2 ** 0.5, 'm'), Qty(0, 'm')];
 
 console.log(s1.dopplerShift(v, p));
 
-setInterval(() => {
+let interval = setInterval(() => {
   let forces = gravity(obj);
 
   forces.forEach((f, i) => { obj[i].force = f; });
-  obj.forEach((o) => o.selfTick(Qty(10000, 's')));
+  obj.forEach((o) => o.selfTick(Qty(1000, 's')));
 }, 1);
+
+
+// setTimeout(() => {
+//   clearInterval(interval)
+// }, 3000);

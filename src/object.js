@@ -6,6 +6,7 @@ export default class object {
     this.vel = initialState.vel || [Qty(0, 'm/s'), Qty(0, 'm/s'), Qty(0, 'm/s')];
     this.force = initialState.force || [Qty(0, 'N'), Qty(0, 'N'), Qty(0, 'N')];
     this.pos = initialState.pos || [Qty(0, 'm'), Qty(0, 'm'), Qty(0, 'm')];
+    this.track = initialState.track;
   }
 
   selfTick(tick) {

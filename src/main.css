@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Recursive:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
 html,
 body {
@@ -14,9 +15,9 @@ body {
   font-family: var(--font);
   line-height: 1.5;
 
-  --background: #24292e;
-  --highlight: #f6f8fa;
-  --font: 'Recursive', sans;
+  --background: #24292e90;
+  --highlight: gray;
+  --font: 'Roboto Mono', monospace;
 }
 
 canvas {
@@ -47,14 +48,14 @@ p {
   bottom: 0;
   width: 100%;
   background-color: var(--background);
-  border-top: 3px solid var(--highlight);
+  border-top: 1px solid var(--highlight);
   transition-timing-function: easeoutcubic;
   transition-duration: 0.3s;
   transition-property: all;
 }
 
 .info-pane {
-  height: 50px;
+  height: 3.5em;
   overflow-y: hidden;
 }
 
@@ -65,7 +66,7 @@ p {
 .info-pane-pull,
 .info-pane-pull-rotated {
   display: block;
-  margin: 0 auto;
+  margin: 0.3em auto;
   padding: 0;
   stroke-width: 0.1;
   cursor: pointer;

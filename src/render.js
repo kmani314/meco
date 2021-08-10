@@ -20,7 +20,7 @@ export default function canvas() {
 
   const rotScale = 0.008;
   const decel = 0.95;
-  const eps = 0.00001;
+  const eps = 0.001;
   let tracking = false;
   let vels = [
     [0, 0],
@@ -63,7 +63,7 @@ export default function canvas() {
       x: e.clientX,
       y: e.clientY,
       t: new Date(),
-    }
+    };
   }
 
   function handleMouseDown(e) {
@@ -81,7 +81,7 @@ export default function canvas() {
       x: e.clientX,
       y: e.clientY,
       t: new Date(),
-    }
+    };
   }
 
   function handleMouseUp() {
@@ -90,7 +90,7 @@ export default function canvas() {
     vel = {
       x: vels.reduce((x, y) => x + y[0], 0) / vels.length,
       y: vels.reduce((x, y) => x + y[1], 0) / vels.length,
-    }
+    };
   }
 
   return {
@@ -103,8 +103,13 @@ export default function canvas() {
         75,
         container.clientWidth / container.clientHeight,
         0.1,
-        1e10,
+        1e18,
       );
+
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+
+      camera.add(directionalLight);
+      scene.add(camera);
 
       renderer = new THREE.WebGLRenderer();
       renderer.setSize(container.clientWidth, container.clientHeight);
@@ -160,7 +165,6 @@ export default function canvas() {
           if (Math.abs(vel.y) <= eps) vel.y = 0;
         }
         spherical.radius *= (sign > 0 ? 1 + zoomVel : 1 - zoomVel);
-        console.log(spherical.radius);
         zoomVel *= zoomDecel;
         if (Math.abs(zoomVel) <= eps) zoomVel = 0;
 

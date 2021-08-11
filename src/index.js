@@ -65,7 +65,6 @@ function meco() {
           m('p', { style: 'position: absolute; left: 0; margin-left: 1em;' }, 'meco v0.1'),
           m(svg.arrow, {
             class: infoPane ? 'info-pane-pull' : 'info-pane-pull-rotated',
-            stroke: '#fff',
             onclick: () => { infoPane = !infoPane; },
           }),
           m('div', { class: 'info-pane-content' })),

@@ -15,9 +15,9 @@ body {
   font-family: var(--font);
   line-height: 1.5;
 
-  --background: #24292e90;
-  --highlight: gray;
-  --font: 'Roboto Mono', monospace;
+  --background: #24292e60;
+  --highlight: #ffeeee;
+  --font: 'Recursive', monospace;
 }
 
 canvas {
@@ -81,4 +81,23 @@ p {
 .info-pane-content {
   height: calc(100% - (48px + 2em));
   padding: 0 2em 2em 2em;
+}
+
+.stats-container {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  width: 6em;
+  padding: 0.3em;
+  background-color: var(--background);
+
+  /* border: 1px solid var(--highlight); */
+}
+
+.stats-content {
+  margin: 0 auto;
+  color: var(--highlight);
+  font-size: 0.9em;
+  font-family: var(--alt-font);
+  text-align: center;
 }

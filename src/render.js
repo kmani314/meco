@@ -14,8 +14,8 @@ export default function canvas() {
   const zoomDecel = 0.95;
   const maxWheel = 60;
   const minWheel = 5;
-  const zoomMin = 1e6;
-  const zoomMax = 1e11;
+  const zoomMin = 1e1;
+  const zoomMax = 1e5;
   let zoomVel = 0;
   let lastZoom = new Date();
   let sign = 1;
@@ -139,7 +139,7 @@ export default function canvas() {
       const axesHelper = new THREE.AxesHelper(1e7);
       scene.add(axesHelper);
 
-      spherical = new THREE.Spherical(1e10, -Math.PI / 8, 0);
+      spherical = new THREE.Spherical(1e1, -Math.PI / 8, 0);
 
       const cart = new THREE.Vector3();
       cart.setFromSpherical(spherical);
@@ -150,20 +150,16 @@ export default function canvas() {
       let lastFrame = new Date();
 
       const animate = () => {
-        const position = vnode.attrs.obj.filter((o) => o.track)[0].pos.map((o) => o.baseScalar);
+        const position = vnode.attrs.obj.filter((o) => o.track)[0].pos.map((o) => o.to('Mm').scalar);
 
         const dt = new Date() - lastFrame;
         fps = 1000 / dt;
 
         if (!tracking) {
           spherical.phi += vel.y * dt;
-          spherical.phi = Math.min(Math.max(spherical.phi, -Math.PI + eps), 0 - eps);
+          spherical.phi = Math.min(Math.max(spherical.phi, -Math.PI + 1e-3), 0 - 1e-3);
 
           spherical.theta -= vel.x * dt;
-
-          if (spherical.phi === 0 || spherical.phi === -Math.PI) {
-            vel.y = 0;
-          }
 
           vel.x *= decel;
           vel.y *= decel;
@@ -176,7 +172,6 @@ export default function canvas() {
 
         zoomVel *= zoomDecel;
         if (Math.abs(zoomVel) <= eps) zoomVel = 0;
-
 
         lastFrame = new Date();
         cart.setFromSpherical(spherical);

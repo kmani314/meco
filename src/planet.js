@@ -1,4 +1,5 @@
 import Qty from 'js-quantities';
+import * as THREE from 'three';
 import object from './object';
 
 export default class Planet extends object {
@@ -7,22 +8,24 @@ export default class Planet extends object {
     this.radius = initialState.radius || Qty(0, 'm');
     this.looks = undefined;
     this.texture = initialState.texture;
+    this.rotAxis = initialState.rotAxis || new THREE.Vector3(0, 1, 0);
+    this.rotRate = initialState.rotRate || Qty(0.01, 'rad/hr');
   }
 
   selfTick(tick) {
     super.selfTick(tick);
 
-    this.looks.position.x = this.pos[0].to('m').scalar;
-    this.looks.position.y = this.pos[1].to('m').scalar;
-    this.looks.position.z = this.pos[2].to('m').scalar;
+    this.looks.rotateOnAxis(new THREE.Vector3(0, 1, 0), this.rotRate.mul(tick).to('rad').scalar);
+    [this.looks.position.x, this.looks.position.y, this.looks.position.z] = this.pos.map((o) => o.to('Mm').scalar);
   }
 
-  render(three) {
+  render() {
     // Handle rendering logic
-    const geometry = new three.SphereGeometry(this.radius.to('m').scalar, 32, 32);
-    const material = this.texture || new three.MeshPhongMaterial({ color: 0xffffff });
+    const geometry = new THREE.SphereGeometry(this.radius.to('Mm').scalar, 32, 32);
+    const material = this.texture || new THREE.MeshPhongMaterial({ color: 0xffffff });
 
-    this.looks = new three.Mesh(geometry, material);
+    this.looks = new THREE.Mesh(geometry, material);
+    this.looks.rotation.setFromVector3(this.rotAxis);
     return this.looks;
   }
 }

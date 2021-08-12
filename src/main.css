@@ -57,6 +57,7 @@ p {
 .info-pane {
   height: 3.5em;
   overflow-y: hidden;
+  user-select: none;
 }
 
 .info-pane-open {
@@ -100,4 +101,5 @@ p {
   font-size: 0.9em;
   font-family: var(--alt-font);
   text-align: center;
+  user-select: none;
 }
